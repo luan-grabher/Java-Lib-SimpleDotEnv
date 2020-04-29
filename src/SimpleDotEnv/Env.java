@@ -24,7 +24,7 @@ public class Env {
 
             String[] env = envs.stream().filter(e -> e[0].equals(nameEnv)).findFirst().get();
 
-            return "";
+            return env[1];
         } catch (Exception e) {
             return "";
         }
