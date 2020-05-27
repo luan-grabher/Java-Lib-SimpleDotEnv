@@ -34,7 +34,7 @@ public class Env {
         File file = new File(path + fileName);
         if (file.exists()) {
             String fileText = getFileText(file);
-            String[] fileTextRows = fileText.split("\r\n");
+            String[] fileTextRows = fileText.split("\n");
             for (String fileTextRow : fileTextRows) {
                 String[] env = fileTextRow.split("=", 2);
                 if (env.length == 2) {
