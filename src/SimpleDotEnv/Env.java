@@ -1,8 +1,8 @@
 package SimpleDotEnv;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 
 public class Env {
@@ -10,7 +10,7 @@ public class Env {
     private static final String fileName = ".env";
     private static String path = "";
 
-    private static final List<String[]> envs = new ArrayList<>();
+    private static final Map<String, String> envs = new HashMap<>();
 
     public static void setPath(String path) {
         Env.path = path;
@@ -22,11 +22,9 @@ public class Env {
                 setEnvs();
             }
 
-            String[] env = envs.stream().filter(e -> e[0].equals(nameEnv)).findFirst().get();
-
-            return env[1];
+            return envs.get(nameEnv);
         } catch (Exception e) {
-            return "";
+            return null;
         }
     }
 
@@ -38,10 +36,17 @@ public class Env {
             for (String fileTextRow : fileTextRows) {
                 String[] env = fileTextRow.split("=", 2);
                 if (env.length == 2) {
-                    envs.add(env);
+                    envs.put(env[0], env[1]);
                 }
             }
         }
+    }
+
+    public static Map<String, String> getEnvs() {
+        if (envs.isEmpty()) {
+            setEnvs();
+        }
+        return envs;
     }
 
     public static String getFileText(File file) {
