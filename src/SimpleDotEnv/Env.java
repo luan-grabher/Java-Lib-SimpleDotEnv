@@ -12,6 +12,9 @@ public class Env {
 
     private static final Map<String, String> envs = new HashMap<>();
 
+    /**
+     * Define o path antes do arquivo .env, caso queira trocar o nome do arquivo, informe aqui somente o nome sem o .env
+     */
     public static void setPath(String path) {
         Env.path = path;
     }
