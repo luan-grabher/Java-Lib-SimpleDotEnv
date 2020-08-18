@@ -14,6 +14,7 @@ public class Env {
 
     /**
      * Define o path antes do arquivo .env, caso queira trocar o nome do arquivo, informe aqui somente o nome sem o .env
+     * @param path Local completo com o nome do arquivo antes de ".env"
      */
     public static void setPath(String path) {
         Env.path = path;
@@ -25,7 +26,7 @@ public class Env {
                 setEnvs();
             }
 
-            return envs.get(nameEnv);
+            return envs.get(nameEnv.toLowerCase());
         } catch (Exception e) {
             return null;
         }
@@ -39,7 +40,7 @@ public class Env {
             for (String fileTextRow : fileTextRows) {
                 String[] env = fileTextRow.split("=", 2);
                 if (env.length == 2) {
-                    envs.put(env[0], env[1]);
+                    envs.put(env[0].toLowerCase(), env[1]);
                 }
             }
         }
