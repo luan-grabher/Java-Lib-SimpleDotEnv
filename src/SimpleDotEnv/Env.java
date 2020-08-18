@@ -7,6 +7,7 @@ import java.util.Scanner;
 
 public class Env {
 
+    private static String encoding = "latin1";
     private static final String fileName = ".env";
     private static String path = "";
 
@@ -56,7 +57,7 @@ public class Env {
     public static String getFileText(File file) {
         try {
             file = file.getAbsoluteFile();
-            Scanner scan = new Scanner(file, "latin1");
+            Scanner scan = new Scanner(file, encoding);
             String text = scan.useDelimiter("\\A").next();
             scan.close();
             return text;
@@ -64,4 +65,14 @@ public class Env {
             return "";
         }
     }
+
+    /**
+     * Define o encoding utilizado para ler o arquivo
+     * 
+     * @param encoding Por padrão está definido como 'latin1' você pode alterar para 'utf-8' por exemplo
+     */
+    public static void setEncoding(String encoding) {
+        Env.encoding = encoding;
+    }    
+    
 }
