@@ -21,6 +21,12 @@ public class Env {
         Env.path = path;
     }
 
+    /**
+     * Retorna o valor em String da variavel procurada, caso não encontre retorna null
+     * 
+     * @param nameEnv Nome da variavel procurada
+     * @return valor em String da variavel procurada, caso não encontre retorna null
+     */
     public static String get(String nameEnv) {
         try {
             if (envs.isEmpty()) {
@@ -33,6 +39,7 @@ public class Env {
         }
     }
 
+    
     private static void setEnvs() {
         File file = new File(path + fileName);
         if (file.exists()) {
@@ -47,6 +54,11 @@ public class Env {
         }
     }
 
+    /**
+     *  Retorna o mapa das variaveis do arquivo de variaveis
+     * 
+     *  @return mapa das variaveis do arquivo de variaveis
+     */
     public static Map<String, String> getEnvs() {
         if (envs.isEmpty()) {
             setEnvs();
